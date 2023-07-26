@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,22 @@ public class felpeController {
     @PostMapping("/create")
     public felpeModel createFelpe(@RequestBody felpeModel felpe) {
         return felpeRepository.save(felpe);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<felpeModel> updateFelpe(@RequestBody felpeModel updatedFelpe,
+            @PathVariable("id") Integer id) {
+        Optional<felpeModel> optionalFelpe = felpeRepository.findById(id);
+
+        if (optionalFelpe.isPresent()) {
+            felpeModel existingFelpe = optionalFelpe.get();
+            existingFelpe.setTitolo(updatedFelpe.getTitolo());
+
+            felpeModel updated = felpeRepository.save(existingFelpe);
+            return ResponseEntity.ok(updated);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("{id}")
