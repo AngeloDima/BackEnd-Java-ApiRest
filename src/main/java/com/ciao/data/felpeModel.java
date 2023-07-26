@@ -36,4 +36,13 @@ public class felpeModel {
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
+
+    public Integer getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(Integer prezzo) {
+        this.prezzo = prezzo;
+    }
+
 }
