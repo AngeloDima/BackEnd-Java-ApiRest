@@ -29,6 +29,9 @@ public class felpeController {
         return felpeRepository.findAll();
     }
 
+    // FILTRI RICERCA
+
+    // PER ID
     @GetMapping("/{id}")
     public ResponseEntity<felpeModel> detail(@PathVariable("id") Integer id) {
         Optional<felpeModel> optionalFelpe = felpeRepository.findById(id);
@@ -41,6 +44,7 @@ public class felpeController {
         }
     }
 
+    // PER TITOLO
     @GetMapping("/find/{titolo}")
     public ResponseEntity<List<felpeModel>> getFelpeByTitolo(@PathVariable("titolo") String titolo) {
         List<felpeModel> felpeList = felpeRepository.findByTitolo(titolo);
@@ -52,6 +56,7 @@ public class felpeController {
         }
     }
 
+    // PER PREZZO
     @GetMapping("/prezzo/{prezzo}")
     public ResponseEntity<List<felpeModel>> getFelpeByPrezzo(@PathVariable("prezzo") Integer prezzo) {
         List<felpeModel> felpeListPrezzo = felpeRepository.findByPrezzo(prezzo);
