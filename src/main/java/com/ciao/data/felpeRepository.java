@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface felpeRepository extends JpaRepository<felpeModel, Integer> {
     List<felpeModel> findByTitolo(String titolo);
+
+    List<felpeModel> findByPrezzo(Integer prezzo);
 }

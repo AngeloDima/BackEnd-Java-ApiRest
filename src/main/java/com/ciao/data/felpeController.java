@@ -52,6 +52,17 @@ public class felpeController {
         }
     }
 
+    @GetMapping("/prezzo/{prezzo}")
+    public ResponseEntity<List<felpeModel>> getFelpeByPrezzo(@PathVariable("prezzo") Integer prezzo) {
+        List<felpeModel> felpeListPrezzo = felpeRepository.findByPrezzo(prezzo);
+
+        if (!felpeListPrezzo.isEmpty()) {
+            return ResponseEntity.ok(felpeListPrezzo);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // POST
     @PostMapping("/create")
     public felpeModel createFelpe(@RequestBody felpeModel felpe) {

@@ -18,6 +18,9 @@ public class felpeModel {
     @NotEmpty
     private String titolo;
 
+    @NotEmpty
+    private Integer prezzo;
+
     public Integer getId() {
         return id;
     }
