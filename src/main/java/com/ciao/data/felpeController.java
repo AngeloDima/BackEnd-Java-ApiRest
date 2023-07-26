@@ -3,7 +3,6 @@ package com.ciao.data;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.internal.util.collections.ConcurrentReferenceHashMap.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,6 +41,17 @@ public class felpeController {
         }
     }
 
+    @GetMapping("/find/{titolo}")
+    public ResponseEntity<List<felpeModel>> getFelpeByTitolo(@PathVariable("titolo") String titolo) {
+        List<felpeModel> felpeList = felpeRepository.findByTitolo(titolo);
+
+        if (!felpeList.isEmpty()) {
+            return ResponseEntity.ok(felpeList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // POST
     @PostMapping("/create")
     public felpeModel createFelpe(@RequestBody felpeModel felpe) {
@@ -70,5 +80,4 @@ public class felpeController {
     public void delete(@PathVariable("id") Integer id) {
         felpeRepository.deleteById(id);
     }
-
 }
