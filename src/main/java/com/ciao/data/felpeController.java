@@ -24,6 +24,7 @@ public class felpeController {
     @Autowired
     private felpeRepository felpeRepository;
 
+    // GET
     @GetMapping
     public List<felpeModel> index() {
         return felpeRepository.findAll();
@@ -41,11 +42,13 @@ public class felpeController {
         }
     }
 
+    // POST
     @PostMapping("/create")
     public felpeModel createFelpe(@RequestBody felpeModel felpe) {
         return felpeRepository.save(felpe);
     }
 
+    // PUT
     @PutMapping("/{id}")
     public ResponseEntity<felpeModel> updateFelpe(@RequestBody felpeModel updatedFelpe,
             @PathVariable("id") Integer id) {
@@ -62,6 +65,7 @@ public class felpeController {
         }
     }
 
+    // DELETE
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Integer id) {
         felpeRepository.deleteById(id);
