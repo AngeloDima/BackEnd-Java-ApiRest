@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "felpe")
@@ -18,7 +20,8 @@ public class felpeModel {
     @NotEmpty
     private String titolo;
 
-    @NotEmpty
+    @NotNull
+    @Min(0) // Specifica il valore minimo per prezzo (0 o superiore)
     private Integer prezzo;
 
     public Integer getId() {
