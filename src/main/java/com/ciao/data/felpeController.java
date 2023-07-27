@@ -75,7 +75,7 @@ public class felpeController {
     }
 
     // PUT
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<felpeModel> updateFelpe(@RequestBody felpeModel updatedFelpe,
             @PathVariable("id") Integer id) {
         Optional<felpeModel> optionalFelpe = felpeRepository.findById(id);
@@ -83,6 +83,7 @@ public class felpeController {
         if (optionalFelpe.isPresent()) {
             felpeModel existingFelpe = optionalFelpe.get();
             existingFelpe.setTitolo(updatedFelpe.getTitolo());
+            existingFelpe.setPrezzo(updatedFelpe.getPrezzo()); // Add this line to update the price
 
             felpeModel updated = felpeRepository.save(existingFelpe);
             return ResponseEntity.ok(updated);
